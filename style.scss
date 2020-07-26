@@ -1,0 +1,91 @@
+//khai báo biến
+$primaryColor: #ffc87a;
+$textColor: #1a2b5f;
+
+//thiết lập 1 rem = 10px
+html {
+	font-size: 62.5%;
+}
+
+//box-sizing cho các phần tử
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+a {
+	text-decoration: none;
+}
+//thiết lập img không tràn width so với thằng cha
+img {
+	display: block;
+	max-width: 100%;
+}
+body {
+	font-family: 'Poppins', sans-serif;
+}
+//tạo 1 hàm để có thể sử dụng lại
+@mixin flex($align: flex-start, $justify: flex-start, $wrap: nowrap) {
+	display: flex;
+	align-items: $align;
+	justify-content: $justify;
+	flex-wrap: $wrap;
+}
+//xác định độ rộng tối đa của website. thiết lập max-width
+.wrapper {
+	max-width: 1440px;
+	margin: 0 auto;
+}
+
+//xác định độ rộng hiện thị nội dung. thiết lập max-width
+//nên thêm padding 2 bên để khi xuống mobile sẽ không bị dính xác lề
+//cộng thêm độ dài padding vào cho width
+.container {
+	max-width: 1200px;
+	padding: 0 1.5rem;
+	margin: 0 auto;
+}
+
+.header {
+	padding-top: 4rem;
+	&__inner {
+		@include flex(center, space-between);
+	}
+
+	&__menu {
+		&-list {
+			@include flex(center, space-between);
+		}
+		&-item {
+			margin-left: 5rem;
+			&:last-child {
+				margin-left: 7rem;
+			}
+		}
+		&-link {
+			font-size: 1.6rem;
+			color: $textColor;
+			transition: color 0.2s linear, border 0.2s linear;
+			&:hover {
+				color: $primaryColor;
+			}
+		}
+	}
+
+	&__login {
+		padding: 1.5rem 2.5rem;
+		border: 1px solid;
+		border-radius: 2.5rem;
+	}
+}
+
+.logo {
+	font-size: 2.5rem;
+	font-weight: 600;
+	color: $textColor;
+	& .logo__text {
+		color: $primaryColor;
+	}
+}
